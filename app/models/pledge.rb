@@ -11,4 +11,5 @@ class Pledge < ApplicationRecord
       self.errors.add(:dollar_amount, "Amount pledged must be at least $#{reward.dollar_amount}")
     end
   end
+
 end
