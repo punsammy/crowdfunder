@@ -14,7 +14,7 @@ class PledgesController < ApplicationController
     end
   end
 
-  
+
 
   private
 

@@ -1,24 +1,29 @@
+<%= link_to "Home Page", :projects %>
+
 <h1><%= @project.title %></h1>
 
 <p><%= @project.description %></p>
-<p>Total pledges = <%= @pledges_total %></p>
+<p>Total pledges = $<%= @pledges_total %></p>
 <p>Goal: <%= number_to_currency(@project.goal) %></p>
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
-
+<p>
+<%= icon('clock-o') %>
+<%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %></time>
+</p>
 
 <% if @project.image.present? %>
   <%= image_tag @project.image %>
 <% end %>
 
 <h2>Rewards</h2>
-<% @project.rewards.each do |reward| %>
-  <p><%= number_to_currency(reward.dollar_amount) %></p>
-  <p><%= reward.description %></p>
 
-  <%= form_for [reward, reward.pledges.new] do |f| %>
+    <% @project.rewards.each do |reward| %>
+      <p><%= number_to_currency(reward.dollar_amount) %></p>
+      <p><%= reward.description %></p>
+    <%= form_for [reward, reward.pledges.new] do |f| %>
     <%= f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
     <%= f.submit "Pledge" %>
-  <% end %>
+    <% end %>
 
 <% end %>
