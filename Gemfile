@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'kaminari'
 end
 
 group :development do

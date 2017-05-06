@@ -2,7 +2,7 @@ class Pledge < ApplicationRecord
   belongs_to :user
   belongs_to :reward
   has_one :project, through: :reward
-  
+
   validate :enough_pledged
 
   def enough_pledged
