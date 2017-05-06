@@ -8,8 +8,8 @@
 <p>Fundraising starts: <%= @project.start_date.strftime("%A %b %d %Y") %></p>
 <p>Deadline: <%= @project.end_date.strftime("%A %b %d %Y") %></p>
 <p>
-<%= icon('clock-o') %>
-<%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %></time>
+  <%= icon('clock-o') %>
+  <%= "#{time_ago_in_words(@project.end_date)} #{( @project.end_date > Time.now.utc ) ? 'remaining' : 'past deadline'}" %></time>
 </p>
 
 <% if @project.image.present? %>
@@ -25,5 +25,4 @@
     <%= f.number_field :dollar_amount, value: reward.dollar_amount, step: 0.01 %>
     <%= f.submit "Pledge" %>
     <% end %>
-
 <% end %>

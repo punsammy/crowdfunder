@@ -6,4 +6,6 @@ class Project < ActiveRecord::Base
   validates_presence_of :title, :description, :goal, :start_date, :end_date
 
   paginates_per 5
+
+  
 end
