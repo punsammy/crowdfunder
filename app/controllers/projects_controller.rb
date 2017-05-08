@@ -2,11 +2,12 @@ class ProjectsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    # @projects = Project.all
-    # # @projects = @projects.order(:end_date)
-    # @projects = Project.order(:title).page params[:page]
     @q = Project.ransack(params[:q])
     @projects = @q.result(distinct: true).page params[:page]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -29,7 +30,13 @@ class ProjectsController < ApplicationController
     else
       render :new
     end
-   end
+  end
+
+  def search
+    @q = Project.ransack(params[:q])
+    @projects = @q.result(distinct: true).page params[:page]
+    render @projects, layout: false
+  end
 
   private
   def project_params

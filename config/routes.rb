@@ -2,12 +2,12 @@ Rails.application.routes.draw do
   root "projects#index"
 
   resources :projects, only: [:index, :new, :create, :show]
+  post 'projects/search' => 'projects#search'
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :rewards do
     resources :pledges, only: [:create]
   end
-
   get 'login' => 'user_sessions#new', :as => :login
   delete 'logout' => 'user_sessions#destroy', :as => :logout
 
